@@ -12,9 +12,9 @@ def main():
     parser = argparse.ArgumentParser(description='Import elements into VOB.')
     parser.add_argument('files', help='The files to be imported.', nargs='+')
     parser.add_argument('-t', '--target-vob', help='The target VOB to import into.', required=True)
-    parser.add_argument('-p', '--preview', help='See what will be imported into the VOB.', type=bool, default=False)
-    parser.add_argument('-r', '--recursive', help='Recursively import files into the VOB.', type=bool, default=False)
-    parser.add_argument('-v', '--verbose', help='The script will print to standard out its progress.', type=bool, default=False)
+    parser.add_argument('-p', '--preview', help='See what will be imported into the VOB.', action='store_true', default=False)
+    parser.add_argument('-r', '--recursive', help='Recursively import files into the VOB.', action='store_true', default=False)
+    parser.add_argument('-v', '--verbose', help='The script will print to standard out its progress.', action='store_true', default=False)
     args = parser.parse_args()
 
     # Set the global variable values

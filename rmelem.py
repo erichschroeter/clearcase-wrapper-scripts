@@ -14,13 +14,11 @@ def main():
     # parse command line options
     parser = argparse.ArgumentParser(description='Remove elements from the clearcase VOB.')
     parser.add_argument('files', nargs='+', help='The files to remove.')
-    #parser.add_argument('-r', '--regex', help='The regular expression to search for.', default='[\W^\.]')
-    parser.add_argument('-f', '--force', help='Force the removal, otherwise you will be prompted for each file.', type=bool, default=False)
+    parser.add_argument('-f', '--force', help='Force the removal, otherwise you will be prompted for each file.', action='store_true', default=False)
     parser.add_argument('-e', '--exceptions', help='A list of files to exclude from removing. Format is -e="file1.txt;"file 2.txt""')
-    parser.add_argument('-p', '--preview', help='Prints to the console what will be changed without actually changing.', type=bool, default=False)
-    parser.add_argument('-r', '--recursive', help='Recursively remove elements by entering subdirectories.', type=bool, default=False)
-    #parser.add_argument('-c', '--cleartool', help='Use cleartool mv to rename the files. This requires the directory the files reside in to be checked out.', type=bool, default=False)
-    parser.add_argument('-v', '--verbose', help='The script will print to standard out its progress.', type=bool, default=False)
+    parser.add_argument('-p', '--preview', help='Prints to the console what will be changed without actually changing.', action='store_true', default=False)
+    parser.add_argument('-r', '--recursive', help='Recursively remove elements by entering subdirectories.', action='store_true', default=False)
+    parser.add_argument('-v', '--verbose', help='The script will print to standard out its progress.', action='store_true', default=False)
     args = parser.parse_args()
 
     # Set the global variable values
