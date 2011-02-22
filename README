@@ -10,6 +10,15 @@ and clearfsimport. Features such as recursively importing many files which
 may include spaces in their absolute paths; clearfsimport fails when spaces
 exist in the absolute path.
 
+== Usage ==
+These scripts should be run while in the view.
+
+[Examples]
+Windows:
+	python C:\path\to\rename.py -h
+Linux:
+	/path/to/rename.py -h
+
 == Installation ==
 
 = Prerequisites =
