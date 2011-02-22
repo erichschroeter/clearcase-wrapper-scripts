@@ -1,0 +1,16 @@
+=== Clearcase Wrapper Scripts ===
+Contributors:	Erich Schroeter
+
+A collection of scripts wrapping ClearCase CLI tools.
+
+== Description ==
+These are a collection of helper scripts to increase productivity through
+adding additional features to existing ClearCase CLI tools such as cleartool
+and clearfsimport. Features such as recursively importing many files which
+may include spaces in their absolute paths; clearfsimport fails when spaces
+exist in the absolute path.
+
+== Installation ==
+
+= Prerequisites =
+ - Python 2.7
