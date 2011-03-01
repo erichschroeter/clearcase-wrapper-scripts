@@ -12,6 +12,7 @@ lower_case = False
 upper_case = False
 regex = '[\W^\.]'
 replace = '_'
+cleartool = False
 
 def main():
     global regex
@@ -29,6 +30,7 @@ def main():
     group.add_argument('-u', '--upper-case', help='This flag converts all file names to upper case.', action='store_true', default=False)
     parser.add_argument('-p', '--preview', help='Prints to the console what will be changed without actually changing.', action='store_true', default=False)
     parser.add_argument('-r', '--recursive', help='Recursively rename elements by entering subdirectories.', action='store_true',  default=False)
+    group.add_argument('-c', '--cleartool', help='This flag performs renaming by calling cleartool. This serves as a safety measure to force the user to specify to use cleartool in case they make a mistake.', action='store_true', default=False)
     parser.add_argument('-v', '--verbose', help='The script will print to standard out its progress.', action='store_true', default=False)
     args = parser.parse_args()
 
@@ -46,6 +48,8 @@ def main():
     upper_case = args.upper_case
     regex = args.regex
     replace = args.replace
+    global cleartool
+    cleartool = args.cleartool
     
     for filename in args.files:
         file = os.path.abspath(filename)
@@ -89,9 +93,11 @@ def rename(file, newfile):
     else:
         # handle the case when the filename == newfilename
         if not file == newfile:
-            #call(["cleartool", "mv", filename, newfilename])
-            vprint('renaming:: ' + file)
-            vprint(' to:: ' + newfile)
+            if cleartool:
+                # call cleartool via a separate process
+                call(["cleartool", "mv", file, newfile])
+            else:
+                os.rename(file, newfile)
         else:
             print newfile + ' already exists. Skipping it.'
 
