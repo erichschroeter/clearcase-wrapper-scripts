@@ -70,13 +70,13 @@ def remove(file):
         if preview:
             print 'cleartool rmelem --force ' + file
         else:
-            call(["cleartool", "rmelem", "-f", filename])
+            call(["cleartool", "rmelem", "-f", file])
             vprint('removed ' + file)
     else:
         if preview:
             print 'cleartool rmelem ' + file
         else:
-            call(["cleartool", "rmelem", filename])
+            call(["cleartool", "rmelem", file])
             vprint('removed ' + file)
 
 def getExceptions(str):
@@ -84,9 +84,10 @@ def getExceptions(str):
     Handles breaking the single string argument into an array of files.
     '''
     exceptions = []
-    array = str.split(';')
-    for file in array:
-        exceptions.append(os.path.abspath(file))
+    if str is not None:
+        array = str.split(';')
+        for file in array:
+            exceptions.append(os.path.abspath(file))
     return exceptions
 
 def vprint(message):
